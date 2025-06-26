@@ -1,5 +1,5 @@
 import {observable, action} from "mobx";
-import {CONTENT, STYLE, MARKDOWN_THEME_ID, BASIC_THEME_ID, STYLE_LABELS, THEME_LIST} from "../utils/constant";
+import {CONTENT, STYLE, MARKDOWN_THEME_ID, BASIC_THEME_ID, MEDIA_THEME_ID, STYLE_LABELS, THEME_LIST} from "../utils/constant";
 import {replaceStyle, addStyleLabel} from "../utils/helper";
 import TEMPLATE from "../template/index";
 import basicMedia from "../template/basic_media";
