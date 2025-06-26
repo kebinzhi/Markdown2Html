@@ -12,7 +12,7 @@ Fork 自 [markdown2html](https://github.com/TaleAi/markdown2html)，略有调整
 - 支持 html 转 markdwon
 - 支持导出 pdf 和 markdown
 - 欢迎在线使用：
-  - https://kebinzhi.github.io/Markdown2Html/ # 用于网站文章美化，加入行间距适配手机电脑，微信等平台会有兼容问题。
+  - https://kebinzhi.github.io/Markdown2Html/ # 用于网站文章排版，加入行间距适配手机电脑，微信等平台会有兼容问题。
   - https://md.weiyan.cc/
 
 ## 主题
