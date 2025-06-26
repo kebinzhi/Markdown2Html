@@ -93,35 +93,31 @@ export const solveJuejinCode = (html) => {
 };
 
 export const solveHtml = () => {
-  const element = document.getElementById(BOX_ID);
-  // const inner = element.children[0].children; // 这行代码可以移除，因为没有被使用
-  let html = element.innerHTML;
-  html = html.replace(/<mjx-container (class="inline.+?)<\/mjx-container>/g, "<span $1</span>");
-  html = html.replace(/\s<span class="inline/g, '&nbsp;<span class="inline');
-  html = html.replace(/svg><\/span>\s/g, "svg></span>&nbsp;");
-  html = html.replace(/mjx-container/g, "section");
-  html = html.replace(/class="mjx-solid"/g, 'fill="none" stroke-width="70"');
-  html = html.replace(/<mjx-assistive-mml.+?<\/mjx-assistive-mml>/g, "");
+  const element = document.getElementById(BOX_ID);
+  const inner = element.children[0].children;
+  let html = element.innerHTML;
+  html = html.replace(/<mjx-container (class="inline.+?)<\/mjx-container>/g, "<span $1</span>");
+  html = html.replace(/\s<span class="inline/g, '&nbsp;<span class="inline');
+  html = html.replace(/svg><\/span>\s/g, "svg></span>&nbsp;");
+  html = html.replace(/mjx-container/g, "section");
+  html = html.replace(/class="mjx-solid"/g, 'fill="none" stroke-width="70"');
+  html = html.replace(/<mjx-assistive-mml.+?<\/mjx-assistive-mml>/g, "");
+  const basicStyle = document.getElementById(BASIC_THEME_ID).innerText;
+  const markdownStyle = document.getElementById(MARKDOWN_THEME_ID).innerText;
+  const codeStyle = document.getElementById(CODE_THEME_ID).innerText;
+  const fontStyle = document.getElementById(FONT_THEME_ID).innerText;
+  let res = "";
+  try {
+    res = juice.inlineContent(html, basicStyle + markdownStyle + codeStyle + fontStyle, {
+      inlinePseudoElements: true,
+      preserveImportant: true,
+    });
+	res += `<style>${basicMedia}</style>`;
+  } catch (e) {
+    message.error("请检查 CSS 文件是否编写正确！");
+  }
 
-  // 1. 收集所有样式表的文本内容
-  const basicStyle = document.getElementById(BASIC_THEME_ID).innerText;
-  const markdownStyle = document.getElementById(MARKDOWN_THEME_ID).innerText;
-  const codeStyle = document.getElementById(CODE_THEME_ID).innerText;
-  const fontStyle = document.getElementById(FONT_THEME_ID).innerText;
-
-  // 2. 将所有样式（包括媒体查询）合并到一个字符串中
-  const allStyles = `
-    ${basicStyle}
-    ${markdownStyle}
-    ${codeStyle}
-    ${fontStyle}
-    ${basicMedia}
-  `;
-
-  // 3. 将原始HTML内容和包含所有样式的<style>标签拼接起来
-  const res = html + `<style>${allStyles}</style>`;
-
-  return res;
+  return res;
 };
 
 export const copySafari = (text) => {
