@@ -2,6 +2,7 @@ import {observable, action} from "mobx";
 import {CONTENT, STYLE, MARKDOWN_THEME_ID, BASIC_THEME_ID, STYLE_LABELS, THEME_LIST} from "../utils/constant";
 import {replaceStyle, addStyleLabel} from "../utils/helper";
 import TEMPLATE from "../template/index";
+import basicMedia from "../template/basic_media";
 
 class Content {
   @observable content;
@@ -73,6 +74,7 @@ addStyleLabel(STYLE_LABELS);
 
 // 初始化整体主题
 replaceStyle(BASIC_THEME_ID, TEMPLATE.basic);
+replaceStyle(MEDIA_THEME_ID, basicMedia);
 
 store.content = window.localStorage.getItem(CONTENT);
 
