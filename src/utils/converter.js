@@ -147,15 +147,18 @@ function processAndFilterCss(html, cssSources) {
   // 3. 过滤未使用规则并重新构建CSS字符串
   let finalCss = '';
   selectorToPropertiesMap.forEach((propertiesMap, selector) => {
-    // 过滤逻辑：检查选择器是否在HTML中被实际使用
-    const selectors = selector.split(/[, ]+/); // 支持逗号分隔和后代选择器
-    const isUsed = selectors.some(s => {
-        s = s.replace(/::?[a-zA-Z-]+/g, ''); // 移除伪类/伪元素部分
-        if (s.startsWith('.') && usedClasses.has(s.substring(1))) return true;
-        if (s.startsWith('#')) return true; // 默认保留所有ID选择器
-        const tagMatch = s.match(/^[a-zA-Z]+/);
-        if (tagMatch && usedTags.has(tagMatch[0])) return true;
-        return false;
+    // 优化后的过滤逻辑
+    const selectorUnitsRegex = /[#.]?[\w-]+/g; // 匹配如: p, .class, #id
+    const units = selector.match(selectorUnitsRegex) || [];
+    
+    const isUsed = units.some(unit => {
+        if (unit.startsWith('.')) {
+            return usedClasses.has(unit.substring(1));
+        }
+        if (unit.startsWith('#')) {
+            return true; // 默认保留所有ID选择器
+        }
+        return usedTags.has(unit);
     });
     
     // 如果规则被使用，则重新构建它
@@ -173,11 +176,11 @@ function processAndFilterCss(html, cssSources) {
   return finalCss;
 }
 
-
 export const solveHtml = () => {
-  const element = document.getElementById(BOX_ID); //
+  const element = document.getElementById(BOX_ID);
   let html = element.innerHTML;
   
+  // 保留现有的对数学公式等的预处理逻辑
   html = html.replace(/<mjx-container (class="inline.+?)<\/mjx-container>/g, "<span $1</span>");
   html = html.replace(/\s<span class="inline/g, '&nbsp;<span class="inline');
   html = html.replace(/svg><\/span>\s/g, "svg></span>&nbsp;");
@@ -186,16 +189,18 @@ export const solveHtml = () => {
   html = html.replace(/<mjx-assistive-mml.+?<\/mjx-assistive-mml>/g, "");
 
   // 1. 按顺序收集所有CSS源文件的内容
-  const basicStyle = document.getElementById(BASIC_THEME_ID).innerText; //
-  const markdownStyle = document.getElementById(MARKDOWN_THEME_ID).innerText; //
-  const codeStyle = document.getElementById(CODE_THEME_ID).innerText; //
-  const fontStyle = document.getElementById(FONT_THEME_ID).innerText; //
+  const basicStyle = document.getElementById(BASIC_THEME_ID).innerText;
+  const markdownStyle = document.getElementById(MARKDOWN_THEME_ID).innerText;
+  const codeStyle = document.getElementById(CODE_THEME_ID).innerText;
+  const fontStyle = document.getElementById(FONT_THEME_ID).innerText;
+
   const cssSources = [basicStyle, fontStyle, markdownStyle, codeStyle];
   
   let res = html;
   try {
     // 2. 调用核心处理函数，获取优化后的CSS
     const processedCss = processAndFilterCss(html, cssSources);
+    
     // 3. 将处理后的CSS与媒体查询CSS一同注入到<style>标签
     res += `<style>${processedCss}\n${basicMedia}</style>`;
   } catch (e) {
