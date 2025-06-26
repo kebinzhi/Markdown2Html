@@ -36,6 +36,7 @@ export const BASIC_THEME_ID = "basic-theme";
 export const CODE_THEME_ID = "code-theme";
 export const MARKDOWN_THEME_ID = "markdown-theme";
 export const FONT_THEME_ID = "font-theme";
+export const MEDIA_THEME_ID = "media-theme";
 export const LAYOUT_ID = "nice";
 export const BOX_ID = "nice-rich-text-box";
 export const IMAGE_HOSTING_NAMES = {
@@ -49,7 +50,7 @@ export const IMAGE_HOSTING_NAMES = {
 export const RIGHT_SYMBOL = "✔️";
 export const EXPORT_FILENAME_SUFFIX = ".md";
 
-export const STYLE_LABELS = ["basic-theme", "markdown-theme", "code-theme", "font-theme"];
+export const STYLE_LABELS = ["basic-theme", "markdown-theme", "code-theme", "font-theme", "media-theme"];
 
 export const ENTER_DELAY = 0.5;
 export const LEAVE_DELAY = 0.0;
