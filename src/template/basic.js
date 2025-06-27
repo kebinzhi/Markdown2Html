@@ -128,11 +128,11 @@ export default `/*默认样式，最佳实践*/
 
 /*链接*/
 #nice a {
-  text-decoration: none;
-  color: #1e6bb8;
+  color: #0060c6;
   word-wrap: break-word;
-  font-weight: bold;
-  /*border-bottom: 1px solid #1e6bb8;*/
+  /*font-weight: bold;*/
+  /*text-decoration: none;*/
+  /*border-bottom: 1px solid #0060c6;*/
 }
 
 /*加粗*/
@@ -192,7 +192,7 @@ export default `/*默认样式，最佳实践*/
   padding: 2px 4px;
   border-radius: 4px;
   margin: 0 2px;
-  color: #1e6bb8;
+  color: #0060c6;
   background-color: rgba(27,31,35,.05);
   font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
   word-break: break-all;
@@ -327,12 +327,12 @@ export default `/*默认样式，最佳实践*/
 }
 
 #nice .footnote-word {
-  color: #1e6bb8;
+  color: #0060c6;
   font-weight: bold;
 }
 
 #nice .footnote-ref {
-  color: #1e6bb8;
+  color: #0060c6;
   font-weight: bold;
 }
 
