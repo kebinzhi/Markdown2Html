@@ -206,8 +206,9 @@ export default `/* 自定义样式，实时生效，浏览器实时缓存 */
   color: var(--text-blockquote-color);
 }
 
-/* 链接 
- * border-bottom: 1px solid #1e6bb8;
+/* 链接
+ * text-decoration: none;
+ * border-bottom: 1px solid #0060c6;
  */
 #nice a {
 }
