@@ -132,7 +132,7 @@ export default `/*默认样式，最佳实践*/
   word-wrap: break-word;
   /*font-weight: bold;*/
   /*text-decoration: none;*/
-  /*border-bottom: 1px solid #0060c6;*/
+  /*border-bottom: 1px solid currentColor;*/
 }
 
 /*加粗*/
