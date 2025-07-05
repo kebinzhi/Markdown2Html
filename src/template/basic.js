@@ -1,26 +1,23 @@
-export default `/*
- * 默认样式
- * 优化整理时间：2025年7月5日
- * 优化原则：修复BUG、提升结构与可读性，并完整保留所有原始注释。
- */
+export default `/* 默认样式 */
+/* 一些样式写在basic_media.js */
 
 /* 全局属性 */
 #nice {
   font-size: 16px;
   color: #333;
   padding: 0 3px;
-  word-spacing: 0px; /* 默认值，为明确起见保留 */
-  letter-spacing: 0px; /* 默认值，为明确起见保留 */
+  word-spacing: 0px;
+  letter-spacing: 0px;
   overflow-wrap: break-word;
   text-align: left;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", "Hiragino Sans GB", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", Arial, "Microsoft YaHei", "Segoe UI", "Hiragino Sans GB", "Helvetica Neue", Helvetica, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   /* margin-top: -10px; */
 }
 
 /* 段落 */
 #nice p {
   font-size: 1em;  /* 父元素#nice字体大小为16px，1em就等于16px */
-  color: #333; /* 继承自#nice，为明确起见保留 */
+  color: #333;
   margin-bottom: 12px;
 }
 
@@ -32,7 +29,7 @@ export default `/*
 #nice h5,
 #nice h6 {
   font-weight: bold;
-  color: #333; /* 继承自#nice，为明确起见保留 */
+  color: #333;
   margin-top: 30px;
   margin-bottom: 15px;
   padding: 0px;
@@ -78,7 +75,7 @@ export default `/*
 /* 列表 */
 #nice ul,
 #nice ol {
-  color: #333; /* 继承自#nice，为明确起见保留 */
+  color: #333;
   margin-bottom: 12px;
   padding-left: 25px;
 }
@@ -95,11 +92,11 @@ export default `/*
   list-style-type: decimal;
 }
 
-/* 列表内容 (注意：li > section 结构不标准，请确认是否为 li > p) */
+/* 列表内容 */
 #nice li section {
-  color: #333; /* 继承自#nice，为明确起见保留 */
+  color: #333;
   margin-bottom: 12px;
-  text-align: left; /* 继承自#nice，为明确起见保留 */
+  text-align: left;
 }
 
 /* 引用 */
@@ -110,21 +107,29 @@ export default `/*
   border-left: 3px solid rgba(0, 0, 0, 0.4);
   display: block;
   overflow: auto;
-  /* overflow-scrolling: touch; 已废弃，安全移除 */
-  margin: 20px 0; /* 使用简写 */
-  padding: 10px 10px 10px 20px; /* 使用简写 */
+  margin: 20px 0;
+  padding: 10px 10px 10px 20px;
 }
 
 /* 引用文字 */
 #nice blockquote p {
-  color: #505050; /* 文字颜色 (继承自blockquote，为明确起见保留) */
+  color: #505050; /* 文字颜色 */
   margin: 8px 0; /* 上下间距保持居中，上下间距实际会比只有底部间距看上去小，所以增大一点 */
   line-height: 28px; /* PC端对比30px阅读稍差 */
+}
+/* 引用文字加粗 */
+#nice blockquote p strong {
+}
+/* 引用文字斜体 */
+#nice blockquote p em {
+}
+/* 引用文字加粗斜体 */
+#nice blockquote p em strong {
 }
 
 /* 目录导航，即TOC */
 #nice .table-of-contents a {
-  color: #333; /* 继承自#nice，为明确起见保留 */
+  color: #333;
   font-weight: normal;
   border: none;
 }
@@ -139,23 +144,23 @@ export default `/*
 
 /* 加粗 */
 #nice strong {
-  color: #333; /* 继承自#nice，为明确起见保留 */
+  color: #333;
   font-weight: bold;
 }
 /* 斜体 */
 #nice em {
-  color: #333; /* 继承自#nice，为明确起见保留 */
+  color: #333;
   font-style: italic;
 }
 /* 加粗斜体 */
 #nice em strong {
-  color: #333; /* 继承自#nice，为明确起见保留 */
+  color: #333;
   font-weight: bold;
 }
 
 /* 删除线 */
 #nice del {
-  color: #333; /* 继承自#nice，为明确起见保留 */
+  color: #333;
   font-style: italic;
 }
 
@@ -174,13 +179,15 @@ export default `/*
   font-size: 0.875em; /* 0.875x16=14px */
   display: block;
   overflow-x: auto; /* 水平滚动条 */
-  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
+  font-family: "Operator Mono", Consolas, Monaco, Menlo, monospace;
+}
+#nice pre code span {
 }
 
 /* 行内代码：反引号代码 */
 #nice p code,
 #nice li code {
-  font-size: 14px;
+  font-size: 0.875em;
   color: #ff6441;
   background-color: rgba(27,31,35,.05);
   padding: 2px 4px;
@@ -189,7 +196,14 @@ export default `/*
   font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
 }
 
-/* 图片与图注 */
+/* 图片 */
+#nice img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* 图片 */
 #nice figure {
   margin: 10px 0;
   display: flex;
@@ -198,12 +212,7 @@ export default `/*
   align-items: center;
 }
 
-#nice img {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-}
-
+/* 图片描述文字 */
 #nice figcaption {
   font-size: 0.875em;
   color: #888;
@@ -211,10 +220,11 @@ export default `/*
   text-align: center;
 }
 
-/* 表格 */
+/* 表格容器 */
 #nice .table-container {
   overflow-x: auto;
 }
+/* 表格 */
 #nice table {
   border-collapse: collapse;
   width: 100%;
@@ -231,7 +241,7 @@ export default `/*
 /* 单元格通用样式 */
 #nice table tr th,
 #nice table tr td {
-  font-size: 16px;
+  font-size: 0.9375em; /* 0.9375x16=15px */
   border: 1px solid #ccc;
   padding: 5px 10px;
   text-align: left;
@@ -245,11 +255,10 @@ export default `/*
 
 /* 微信代码块 */
 #nice .code-snippet__fix {
-  /* 优化建议: !important 标志应谨慎使用，它会使样式难以覆盖和维护 */
+  font-size: 0.875em;
+  color: #333;
   overflow-wrap: break-word !important;
-  font-size: 14px;
   margin: 10px 0;
-  color: #333; /* 继承自#nice，为明确起见保留 */
   position: relative;
   background-color: rgba(0,0,0,0.03);
   border: 1px solid #f0f0f0;
@@ -258,33 +267,32 @@ export default `/*
   line-height: 20px;
 }
 #nice .code-snippet__fix pre {
-  margin-bottom: 10px; /* 优化：margin-top 与 padding 可能会冲突，统一管理 */
+  margin-bottom: 10px;
   margin-top: 0px;
   overflow-x: auto;
   padding: 16px;
   padding-left: 0;
   white-space: normal;
   flex: 1;
-  /* overflow-scrolling: touch; 已废弃，安全移除 */
 }
 #nice .code-snippet__fix .code-snippet__line-index {
   counter-reset: line;
   flex-shrink: 0;
   height: 100%;
-  padding: 16px; /* padding: 1em 与 padding: 16px 重复，保留后者 */
+  padding: 16px;
   list-style-type: none;
   margin: 0;
 }
 #nice .code-snippet__fix .code-snippet__line-index li {
   list-style-type: none;
   text-align: right;
-  color: #333; /* 继承自#nice，为明确起见保留 */
+  color: #333;
   margin: 0;
 }
 #nice .code-snippet__fix .code-snippet__line-index li::before {
   min-width: 1.5em;
   text-align: right;
-  left: -2.5em; /* 优化建议: 此属性需配合 position: relative/absolute 生效 */
+  left: -2.5em;
   counter-increment: line;
   content: counter(line);
   display: inline;
@@ -292,13 +300,12 @@ export default `/*
 }
 #nice .code-snippet__fix code {
   text-align: left;
-  font-size: 14px;
+  font-size: 0.875em;
   white-space: pre;
   position: relative;
-  font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   padding: 0px;
-  /* 优化：父元素是flex容器，这里的display声明通常会被覆盖 */
-  display: block; 
+  display: block;
 }
 
 /* 脚注 */
@@ -314,21 +321,21 @@ export default `/*
 
 #nice .footnote-num {
   display: inline;
-  width: 10%; /*神奇，50px就不可以*/
+  width: 10%;
   background: none;
-  font-size: 80%;
+  font-size: 0.8125em;
   opacity: 0.6;
-  font-family: ptima-Regular, Optima, PingFangSC-light, PingFangTC-light, 'PingFang SC', Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 #nice .footnote-item p {
+  font-size: 0.875em;
+  color: #333;
   display: inline;
-  font-size: 14px;
   padding: 0px;
   margin: 0;
-  color: #333; /* 继承自#nice，为明确起见保留 */
-  /* BUG修复：calc() 函数中运算符两侧必须有空格，且值需要单位 */
-  width: calc(100% - 50px); 
+  /* calc() 函数中的运算符两边必须有空格，值要有单位 */
+  width: calc(100% - 50px);
 }
 
 #nice sub, sup {
@@ -340,18 +347,20 @@ export default `/*
   display: block;
 }
 
-/* 公式问题 */
+/* 解决公式问题 */
 #nice .block-equation {
-  display: block; /* 优化：移除了重复的 display: block */
+  display: block;
   text-align: center;
   overflow: auto;
-  /* overflow-scrolling: touch; 已废弃，安全移除 */
 }
 
 #nice .block-equation svg {
-  /* 优化建议: 避免使用 !important */
   max-width: 300% !important;
-  /* overflow-scrolling: touch; 已废弃，且对SVG作用不大，安全移除 */
+}
+#nice .inline-equation {
+}
+
+#nice .inline-equation svg {
 }
 
 /* 图片横向滚动 */
@@ -388,10 +397,10 @@ export default `/*
   color: #888;
 }
 
-/* 图片链接 */
+/* 图片链接嵌套 */
 #nice figure a {
   border: none;
-  display: flex; /* 优化：合并了重复的规则 */
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -415,15 +424,6 @@ export default `/*
 
 /* 掘金后缀容器 */
 #nice .nice-suffix-juejin-container {
-  /* 优化建议: 避免使用 !important */
   margin-top: 20px !important;
 }
-
-/*
- * 附注：
- * 原始代码中的空规则集已被移除，如:
- * #nice blockquote p strong {}
- * #nice pre code span {}
- * 这些通常是为未来样式或JS钩子预留的占位符。
- */
 `;
