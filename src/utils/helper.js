@@ -15,7 +15,6 @@ import markdownItImageFlow from "./markdown-it-imageflow";
 import highlightjs from "./langHighlight";
 import markdownItLiReplacer from "./markdown-it-li";
 import markdownUrlAddSpan from "./markdown-it-urlspan";
-import cjkFriendlyEmphasis from './markdown-it-emphasis-rule.js';
 
 export const axiosGithub = axios.create({
   baseURL: "https://api.github.com",
@@ -82,9 +81,6 @@ export const markdownParserWechat = new MarkdownIt({
   },
 });
 
-// 使用修改后的 emphasis 规则替换默认规则
-markdownParserWechat.inline.ruler.at('emphasis', cjkFriendlyEmphasis);
-
 markdownParserWechat
   .use(markdownUrlAddSpan)
   .use(markdownItSpan) // 在标题标签中添加span
@@ -127,9 +123,6 @@ export const markdownParser = new MarkdownIt({
     return '<pre class="custom"><code class="hljs">' + markdownParser.utils.escapeHtml(str) + "</code></pre>";
   },
 });
-
-// 使用修改后的 emphasis 规则替换默认规则
-markdownParser.inline.ruler.at('emphasis', cjkFriendlyEmphasis);
 
 markdownParser
   .use(markdownUrlAddSpan)
@@ -213,6 +206,21 @@ export const dateFormat = (date, fmt) => {
   }
   return fmt;
 };
+
+// export const url2Blob = (imgUrl) => {
+//   window.URL = window.URL || window.webkitURL;
+//   var xhr = new XMLHttpRequest();
+//   xhr.open("get", imgUrl, true);
+//   xhr.responseType = "blob";
+//   xhr.onload = function () {
+//     if (this.status == 200) {
+//       //得到一个blob对象
+//       var blob = this.response;
+//       console.log("blob", blob)
+//     }
+//   }
+//   xhr.send();
+// }
 
 function getBase64Image(img) {
   var canvas = document.createElement("canvas");
