@@ -95,6 +95,7 @@ export default `/* 默认样式 */
 /* 列表内容 */
 #nice li section {
   color: #333;
+  font-size: 1em;
   margin-bottom: 12px;
   text-align: left;
 }
@@ -318,7 +319,7 @@ export default `/* 默认样式 */
 #nice .footnote-item {
   display: flex;
 }
-
+/* 参考资料编号 */
 #nice .footnote-num {
   display: inline;
   width: 10%;
@@ -327,7 +328,7 @@ export default `/* 默认样式 */
   opacity: 0.6;
   font-family: Optima-Regular, Optima, PingFangSC-light, PingFangTC-light, "PingFang SC", Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
-
+/* 参考资料文字 */
 #nice .footnote-item p {
   font-size: 0.875em;
   color: #333;
@@ -353,17 +354,17 @@ export default `/* 默认样式 */
   text-align: center;
   overflow: auto;
 }
-
+/* 行间公式 */
 #nice .block-equation svg {
   max-width: 300% !important;
 }
+/* 行内公式 */
 #nice .inline-equation {
 }
-
 #nice .inline-equation svg {
 }
 
-/* 图片横向滚动 */
+/* 滑动幻灯片 */
 #nice .imageflow-layer1 {
   margin-top: 1em;
   margin-bottom: 0.5em;
