@@ -120,12 +120,15 @@ export default `/* 默认样式 */
 }
 /* 引用文字加粗 */
 #nice blockquote p strong {
+  color: #505050;
 }
 /* 引用文字斜体 */
 #nice blockquote p em {
+  color: #505050;
 }
 /* 引用文字加粗斜体 */
 #nice blockquote p em strong {
+  color: #505050;
 }
 
 /* 目录导航，即TOC */
@@ -135,8 +138,8 @@ export default `/* 默认样式 */
   border: none;
 }
 
-/* 链接 */
-#nice a {
+/* 链接，用span防止a:hover样式干扰 */
+#nice a span {
   color: #0060c6;
   /* font-weight: bold; */
   /* text-decoration: none; */
