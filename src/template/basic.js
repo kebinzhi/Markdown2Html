@@ -139,6 +139,7 @@ export default `/* 默认样式 */
 }
 
 /* 链接，用span防止a:hover样式干扰 */
+#nice a,
 #nice a span {
   color: #0060c6;
   /* font-weight: bold; */
