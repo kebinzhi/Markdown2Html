@@ -33,6 +33,7 @@ export default `/* 自定义样式，实时生效，浏览器实时缓存 */
  */
 #nice p {
   color: var(--text-color);
+  font-size: 1em;
 }
 
 /* 一级标题 */
@@ -176,6 +177,7 @@ export default `/* 自定义样式，实时生效，浏览器实时缓存 */
 /* 列表内容，不要设置li */
 #nice li section {
   color: var(--text-color);
+  font-size: 1em;
 }
 
 /* 引用
@@ -217,16 +219,19 @@ export default `/* 自定义样式，实时生效，浏览器实时缓存 */
 /* 加粗 */
 #nice strong {
   color: var(--text-color);
+  font-size: 1em;
 }
 
 /* 斜体 */
 #nice em {
   color: var(--text-color);
+  font-size: 1em;
 }
 
 /* 加粗斜体 */
 #nice em strong {
   color: var(--text-color);
+  font-size: 1em;
 }
 
 /* 删除线
