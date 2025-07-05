@@ -1,10 +1,8 @@
-// src/utils/markdown-it-emphasis-rule.js
-
 'use strict';
 
+// 这是一个修改版的 markdown-it v8.4.2 emphasis 规则
+// 唯一的修改是为了让其能正确处理紧邻CJK字符的加粗/斜体标记
 
-// parse sequence of markers, create markup
-//
 function postProcess(state, delimiters) {
   var i, j,
       startDelim,
@@ -34,8 +32,11 @@ function postProcess(state, delimiters) {
     //
     if (i > 0 &&
         delimiters[i - 1].end === startDelim.end + 1 &&
+        // check that first two markers match and adjacent
+        delimiters[i - 1].marker === startDelim.marker &&
         delimiters[i - 1].token === startDelim.token - 1 &&
-        delimiters[i - 1].marker === startDelim.marker) {
+        // check that last two markers are adjacent (we can safely assume they match)
+        delimiters[startDelim.end + 1].token === endDelim.token + 1) {
 
       delimiters[i - 1].length += startDelim.length;
       delimiters[i].length = 0;
@@ -138,7 +139,13 @@ module.exports = function emphasis(state, silent) {
       scanned,
       token,
       start = state.pos,
-      marker = state.src.charCodeAt(start);
+      marker = state.src.charCodeAt(start),
+      prevChar,
+      nextChar,
+      isLastPunctChar,
+      isNextPunctChar,
+      isLastWhiteSpace,
+      isNextWhiteSpace;
 
   if (silent) { return false; }
 
@@ -150,33 +157,45 @@ module.exports = function emphasis(state, silent) {
     token         = state.push('text', '', 0);
     token.content = String.fromCharCode(marker);
 
+    if (i === 0) {
+      prevChar = state.pos > 0 ? state.src.charCodeAt(state.pos - 1) : -1;
+      nextChar = state.pos + scanned.length < state.posMax ? state.src.charCodeAt(state.pos + scanned.length) : -1;
+
+      isLastPunctChar = state.md.utils.isPunctChar(String.fromCharCode(prevChar));
+      isNextPunctChar = state.md.utils.isPunctChar(String.fromCharCode(nextChar));
+
+      isLastWhiteSpace = state.md.utils.isWhiteSpace(prevChar);
+      isNextWhiteSpace = state.md.utils.isWhiteSpace(nextChar);
+
+      // ======================= 核心修改：让规则识别CJK字符 =======================
+      const CJK_RE = /[\u4e00-\u9fa5\u3000-\u303f\uff00-\uffef]/;
+      if (CJK_RE.test(String.fromCharCode(prevChar))) { isLastPunctChar = true; }
+      if (CJK_RE.test(String.fromCharCode(nextChar))) { isNextPunctChar = true; }
+      // ======================= 修改结束 =======================================
+
+      if (isNextWhiteSpace) {
+        scanned.can_open = false;
+      } else if (isNextPunctChar) {
+        if (!(isLastWhiteSpace || isLastPunctChar)) {
+          scanned.can_open = false;
+        }
+      }
+
+      if (isLastWhiteSpace) {
+        scanned.can_close = false;
+      } else if (isLastPunctChar) {
+        if (!(isNextWhiteSpace || isNextPunctChar)) {
+          scanned.can_close = false;
+        }
+      }
+    }
+
     state.delimiters.push({
-      // Char code of the starting marker (number).
-      //
       marker: marker,
-
-      // Total length of these series of delimiters.
-      //
       length: scanned.length,
-
-      // An amount of characters before this one that's equivalent to
-      // current one. In plain English: if this delimiter does not open
-      // an emphasis, neither do previous, same-character delimiters.
-      //
       jump:   i,
-
-      // A position of the token this delimiter corresponds to.
-      //
       token:  state.tokens.length - 1,
-
-      // If this delimiter is matched as a valid opener, `end` will be
-      // equal to its position, otherwise it's `-1`.
-      //
       end:    -1,
-
-      // Boolean flags that determine if this delimiter could open or close
-      // an emphasis.
-      //
       open:   scanned.can_open,
       close:  scanned.can_close
     });
@@ -187,13 +206,7 @@ module.exports = function emphasis(state, silent) {
   if (state.delimiters.length === 0) {
     return true;
   }
-
-  // We can't immediatelly find matching closer, because we can be in link
-  // content. So, we'll postpone processing to the end of the paragraph.
-  //
-  // Note: we can't save `state.delimiters` to a temp variable and reset it
-  //       to [], because `state.scanDelims()` Dmitriy might recurse some day.
-  //
+  
   if (!state.tokens_meta) {
     state.tokens_meta = [];
   }
@@ -208,7 +221,6 @@ module.exports = function emphasis(state, silent) {
   Array.prototype.push.apply(last_token_meta.delimiters, state.delimiters);
   state.delimiters.length = 0;
 
-
   var max = last_token_meta.delimiters.length;
 
   for (i = 0; i < max; i++) {
@@ -216,28 +228,4 @@ module.exports = function emphasis(state, silent) {
   }
 
   return true;
-};
-
-
-// Now, let's patch the `scanDelims` function on the state object
-// to make it CJK-friendly. This is a bit of a hack, but it's cleaner
-// than rewriting the entire rule.
-const originalScanDelims = require('markdown-it/lib/rules_inline/state_inline').prototype.scanDelims;
-
-require('markdown-it/lib/rules_inline/state_inline').prototype.scanDelims = function (start, isAsterisk) {
-    const CJK_RE = /[\u4e00-\u9fa5\u3000-\u303f\uff00-\uffef]/;
-    
-    // Temporarily patch the isPunctChar utility to include CJK characters.
-    const originalIsPunctChar = this.md.utils.isPunctChar;
-    this.md.utils.isPunctChar = (ch) => {
-        return originalIsPunctChar(ch) || CJK_RE.test(ch);
-    };
-
-    // Call the original scanDelims function with our patched utility.
-    const result = originalScanDelims.call(this, start, isAsterisk);
-
-    // Restore the original utility function to avoid side effects.
-    this.md.utils.isPunctChar = originalIsPunctChar;
-
-    return result;
 };
