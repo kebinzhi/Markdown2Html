@@ -138,12 +138,15 @@ export default `/* 默认样式 */
   border: none;
 }
 
-/* 链接，用span防止a:hover样式干扰 */
+/* 链接 */
 #nice a {
   color: #0060c6;
   /* font-weight: bold; */
   /* text-decoration: none; */
   /* border-bottom: 1px solid currentColor; */
+}
+/* 用span防止a:hover样式干扰 */
+#nice a span {
 }
 
 /* 加粗 */
