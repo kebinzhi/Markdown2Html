@@ -211,9 +211,10 @@ export default `/* 自定义样式，实时生效，浏览器实时缓存 */
  * text-decoration: none;
  * border-bottom: 1px solid currentColor;
  * color: #0060c6;
- * 用span防止a:hover样式干扰
  */
-#nice a,
+#nice a {
+}
+/* 用span防止a:hover样式干扰 */
 #nice a span {
 }
 
