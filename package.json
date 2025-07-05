@@ -14,14 +14,14 @@
     "url": "https://github.com/TaleAi/markdown2html"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider node scripts/start.js",
     "watch": "node ./watch.js",
-    "build": "export GENERATE_SOURCEMAP=false&&node --max_old_space_size=4096 scripts/build.js",
-    "test": "node scripts/test.js",
+    "build": "cross-env GENERATE_SOURCEMAP=false NODE_OPTIONS=--openssl-legacy-provider node --max_old_space_size=4096 scripts/build.js",
+    "test": "cross-env NODE_OPTIONS=--openssl-legacy-provider node scripts/test.js",
     "analyze": "source-map-explorer build/static/js/*.js",
     "lint": "eslint src --ext ts,tsx,js --fix",
     "publish:npm": "cross-env NODE_ENV=production && rm -rf lib && mkdir lib && cross-env BABEL_ENV=production npx babel src --out-dir lib --copy-files",
-    "storybook": "npm run publish:npm && start-storybook -p 9001 -c .storybook"
+    "storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider npm run publish:npm && start-storybook -p 9001 -c .storybook"
   },
   "dependencies": {
     "@sitdown/juejin": "^1.1.1",
@@ -99,7 +99,7 @@
     "mini-css-extract-plugin": "0.5.0",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "pnp-webpack-plugin": "1.2.1",
-    "postcss-flexbugs-fixes": "4.1.0",
+postcss-flexbugs-fixes": "4.1.0",
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.5.0",
     "postcss-safe-parser": "4.0.1",
