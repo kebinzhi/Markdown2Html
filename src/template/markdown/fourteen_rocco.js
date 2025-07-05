@@ -188,7 +188,9 @@ export default `/* 自定义样式，实时生效，浏览器实时缓存 */
   background: rgb(249, 249, 249);
 }
 
-/* 引用文字 */
+/* 引用文字颜色 color: #505050;
+ * 加粗那些也要定义相同颜色
+ */
 #nice blockquote p {
   --text-blockquote-color: #505050;
   color: var(--text-blockquote-color);
@@ -207,8 +209,9 @@ export default `/* 自定义样式，实时生效，浏览器实时缓存 */
  * text-decoration: none;
  * border-bottom: 1px solid currentColor;
  * color: #0060c6;
+ * 用span防止a:hover样式干扰
  */
-#nice a {
+#nice a span {
 }
 
 /* 加粗 */
@@ -277,8 +280,25 @@ export default `/* 自定义样式，实时生效，浏览器实时缓存 */
  */
 #nice table tr th,
 #nice table tr td {
-  font-size: 0.875em;
+  font-size: 0.875em; /* 0.875x16=14px */
   color: var(--text-color);
+}
+#nice table tr td strong {
+  font-size: 1.071em; /* 1.071x14=14.994px */
+}
+#nice table tr td em {
+  font-size: 1.071em;
+}
+#nice table tr td em strong {
+  font-size: 1.071em;
+}
+
+/* 脚注文字 */
+#nice .footnote-word {
+}
+
+/* 脚注上标 */
+#nice .footnote-ref {
 }
 
 /* "参考资料"四个字 
