@@ -1,5 +1,3 @@
-// 文件路径: src/utils/helper.js
-
 import axios from "axios";
 import MarkdownIt from "markdown-it";
 import markdownItMath from "./markdown-it-math";
