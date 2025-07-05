@@ -13,7 +13,7 @@ export default `
 /* 手机 */
 @media (max-width: 768px) {
   #nice { line-height: 1.625; } /* 26/16px字体大小 */
-  #nice p { line-height: 26px; } /*手机端26px更合适*/
+  #nice p { line-height: 26px; } /* 手机端26px更合适 */
   #nice li section { line-height: 26px; }
   #nice blockquote p { line-height: 26px; }
   #nice pre code span { line-height: 26px; }
