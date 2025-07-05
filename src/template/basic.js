@@ -1,57 +1,57 @@
-export default `/*默认样式，最佳实践*/
+export default `/* 默认样式 */
 /* 一些样式写在basic_media.js */
 
-/*全局属性*/
+/* 全局属性 */
 #nice {
   font-size: 16px;
-  color: black;
+  color: #333;
   padding: 0 3px;
   word-spacing: 0px;
   letter-spacing: 0px;
-  word-break: break-word;
-  word-wrap: break-word;
+  overflow-wrap: break-word;
   text-align: left;
   font-family: -apple-system, BlinkMacSystemFont, PingFang SC, Arial, Microsoft YaHei, Segoe UI, Hiragino Sans GB, Helvetica Neue, Helvetica, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-  /*margin-top: -10px;*/ /*解决开头空隙过大问题*/
+  /* margin-top: -10px; */
 }
 
-/*段落*/
+/* 段落 */
 #nice p {
-  font-size: 16px;
-  margin-bottom: 12px;
+  font-size: 1em;  /* 父元素#nice字体大小为16px，1em就等于16px */
   color: #333;
+  margin-bottom: 12px;
 }
 
-/*标题*/
+/* 标题 */
 #nice h1,
 #nice h2,
 #nice h3,
 #nice h4,
 #nice h5,
 #nice h6 {
+  font-weight: bold;
+  color: #333;
   margin-top: 30px;
   margin-bottom: 15px;
   padding: 0px;
-  font-weight: bold;
-  color: #333;
 }
+
 #nice h1 {
-  font-size: 24px;
+  font-size: 1.5em; /* 1.5x16=24px */
 }
 #nice h2 {
-  font-size: 22px;
+  font-size: 1.375em; /* 1.375x16=22px */
 }
 #nice h3 {
-  font-size: 20px;
+  font-size: 1.25em;
 }
 #nice h4 {
-  font-size: 18px;
+  font-size: 1.125em;
 }
 #nice h5 {
-  font-size: 16px;
+  font-size: 1em;
 }
 #nice h6 {
-  font-size: 16px;
+  font-size: 1em;
 }
 
 #nice h1 .prefix,
@@ -72,201 +72,190 @@ export default `/*默认样式，最佳实践*/
   display: none;
 }
 
-/*列表*/
+/* 列表 */
 #nice ul,
 #nice ol {
+  color: #333;
   margin-bottom: 12px;
   padding-left: 25px;
-  color: #333;
 }
+/* 无序一级列表 */
 #nice ul {
   list-style-type: disc;
 }
+/* 无序二级列表 */
 #nice ul ul {
   list-style-type: square;
 }
-
+/* 有序列表 */
 #nice ol {
   list-style-type: decimal;
 }
 
+/* 列表内容 */
 #nice li section {
+  color: #333;
   margin-bottom: 12px;
   text-align: left;
-  color: rgb(1,1,1); /* 只要是纯黑色微信编辑器就会把color这个属性吞掉。。。*/
 }
 
-/*引用*/
+/* 引用 */
 #nice blockquote {
+  font-size: 1em;
+  color: #505050; /* 文字颜色 */
+  background: rgba(0, 0, 0, 0.05);
+  border-left: 3px solid rgba(0, 0, 0, 0.4);
   display: block;
-  font-size: 0.9em;
   overflow: auto;
   overflow-scrolling: touch;
-  border-left: 3px solid rgba(0, 0, 0, 0.4);
-  background: rgba(0, 0, 0, 0.05);
-  color: #6a737d;
+  margin-bottom: 20px;
+  margin-top: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 20px;
   padding-right: 10px;
-  margin-bottom: 20px;
-  margin-top: 20px;
 }
 
+/* 引用文字 */
 #nice blockquote p {
-  margin: 8px 0; /*上下间距保持居中，上下间距实际会比只有底部间距看上去小，所以增大一点*/
-  color: #333;
-  line-height: 28px; /*PC端对比30px阅读稍差*/
+  color: #505050; /* 文字颜色 */
+  margin: 8px 0; /* 上下间距保持居中，上下间距实际会比只有底部间距看上去小，所以增大一点 */
+  line-height: 28px; /* PC端对比30px阅读稍差 */
+}
+/* 引用文字加粗 */
+#nice blockquote p strong {
+}
+/* 引用文字斜体 */
+#nice blockquote p em {
+}
+/* 引用文字加粗斜体 */
+#nice blockquote p em strong {
 }
 
+/* 目录导航，即TOC */
 #nice .table-of-contents a {
-  border: none;
   color: #333;
   font-weight: normal;
+  border: none;
 }
 
-/*链接*/
+/* 链接 */
 #nice a {
   color: #0060c6;
-  word-wrap: break-word;
-  /*font-weight: bold;*/
-  /*text-decoration: none;*/
-  /*border-bottom: 1px solid currentColor;*/
+  /* font-weight: bold; */
+  /* text-decoration: none; */
+  /* border-bottom: 1px solid currentColor; */
 }
 
-/*加粗*/
+/* 加粗 */
 #nice strong {
-  font-weight: bold;
   color: #333;
+  font-weight: bold;
 }
-
-/*斜体*/
+/* 斜体 */
 #nice em {
-  font-style: italic;
   color: #333;
+  font-style: italic;
 }
-
-/*加粗斜体*/
+/* 加粗斜体 */
 #nice em strong {
+  color: #333;
   font-weight: bold;
-  color: #333;
 }
 
-/*删除线*/
+/* 删除线 */
 #nice del {
-  font-style: italic;
   color: #333;
+  font-style: italic;
 }
 
-/*分隔线*/
+/* 分隔线 */
 #nice hr {
-  height: 1px;
-  margin: 0;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: none;
-  border-top: 1px solid black;
+  margin: 10px 0;
+  border-top: 2px solid black;
 }
 
-/*代码块*/
+/* 代码块 */
 #nice pre {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 #nice pre code {
-  display: -webkit-box;
-  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
-  border-radius: 0px;
-  font-size: 12px;
-  -webkit-overflow-scrolling: touch;
+  font-size: 0.875em; /* 0.875x16=14px */
+  display: block;
+  overflow-x: auto; /* 水平滚动条 */
+  font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
 }
 #nice pre code span {
 }
 
-/*行内代码*/
+/* 行内代码：反引号代码 */
 #nice p code,
 #nice li code {
   font-size: 14px;
-  word-wrap: break-word;
+  color: #ff6441;
+  background-color: rgba(27,31,35,.05);
   padding: 2px 4px;
   border-radius: 4px;
   margin: 0 2px;
-  color: #0060c6;
-  background-color: rgba(27,31,35,.05);
   font-family: Operator Mono, Consolas, Monaco, Menlo, monospace;
-  word-break: break-all;
 }
 
-/*图片*/
+/* 图片 */
 #nice img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
 }
 
-/*图片*/
+/* 图片 */
 #nice figure {
-  margin: 0;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
-/*图片描述文字*/
+/* 图片描述文字 */
 #nice figcaption {
+  font-size: 0.875em;
+  color: #888;
   margin-top: 5px;
   text-align: center;
-  color: #888;
-  font-size: 14px;
 }
 
-
-/*表格容器 */
-#nice .table-container{
-  overflow-x: auto;
+/* 表格容器 */
+#nice .table-container {
+  overflow-x: auto;
 }
-
-/*表格*/
+/* 表格 */
 #nice table {
-  display: table;
-  text-align: left;
-  margin-bottom: 20px;
+  border-collapse: collapse; 
+  width: 100%;
+  margin-bottom: 20px;
 }
-#nice tbody {
-  border: 0;
-}
-
+/* 奇数行 */
 #nice table tr {
-  border: 0;
-  border-top: 1px solid #ccc;
-  background-color: white;
+  background-color: white;
 }
-
+/* 偶数行 */
 #nice table tr:nth-child(2n) {
-  background-color: #F8F8F8;
+  background-color: #F8F8F8;
 }
-
+/* 单元格通用样式 */
 #nice table tr th,
 #nice table tr td {
-  font-size: 16px;
-  border: 1px solid #ccc;
-  padding: 5px 10px;
-  text-align: left;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  text-align: left;
+  min-width: 85px; 
 }
-
+/* 表头单元格样式 */
 #nice table tr th {
-  font-weight: bold;
-  background-color: #f0f0f0;
-}
-
-/* 表格最小列宽4个汉字 */
-#nice table tr th:nth-of-type(n),
-#nice table tr td:nth-of-type(n){
-  min-width:85px;
+  font-weight: bold;
+  background-color: #f0f0f0;
 }
 
 /* 微信代码块 */
 #nice .code-snippet__fix {
-  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
   font-size: 14px;
   margin: 10px 0;
   display: block;
@@ -355,7 +344,6 @@ export default `/*默认样式，最佳实践*/
   padding: 0px;
   margin: 0;
   color: #333;
-  word-break:break-all;
   width: calc(100%-50)
 }
 
@@ -405,7 +393,7 @@ export default `/*默认样式，最佳实践*/
 
 #nice .imageflow-layer3 {
   display: inline-block;
-  word-wrap: break-word;
+  
   white-space: normal;
   vertical-align: middle;
   width: 100%;
